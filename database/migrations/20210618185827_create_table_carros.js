@@ -27,6 +27,16 @@ exports.up = async (knex) => {
   });
 
   await setUpdatedAt(knex, "carros");
+
+  await knex.raw(`
+    alter table carros
+    add constraint ck_carros_taxa_diaria check (taxa_diaria >= 0.0);
+  `);
+
+  await knex.raw(`
+    alter table carros
+    add constraint ck_carros_valor_multa check (valor_multa >= 0.0);
+  `);
 };
 
 /**
