@@ -7,7 +7,7 @@ exports.up = async (knex) => {
   const DATABASE_NAME = knex.client.config.connection.database;
   const TIMEZONE = "America/Sao_Paulo";
 
-  await knex.raw(`ALTER DATABASE ${DATABASE_NAME} SET timezone='${TIMEZONE}';`);
+  await knex.raw(`alter database ${DATABASE_NAME} set timezone='${TIMEZONE}';`);
 };
 
 /**
@@ -15,6 +15,7 @@ exports.up = async (knex) => {
  */
 exports.down = async (knex) => {
   const DATABASE_NAME = knex.client.config.connection.database;
+  const TIMEZONE = "Etc/UTC";
 
-  await knex.raw(`ALTER DATABASE ${DATABASE_NAME} SET timezone='Etc/UTC';`);
+  await knex.raw(`alter database ${DATABASE_NAME} set timezone='${TIMEZONE}';`);
 };
