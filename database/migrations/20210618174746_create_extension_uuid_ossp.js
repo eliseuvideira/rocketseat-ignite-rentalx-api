@@ -1,4 +1,4 @@
-const Knex = require("knex");
+const { Knex } = require("knex");
 
 /**
  * @param {Knex} knex
