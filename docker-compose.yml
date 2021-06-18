@@ -18,3 +18,26 @@ services:
     ports:
       - $PORT:$PORT
     restart: always
+
+  postgres:
+    image: clkao/postgres-plv8:12-2
+    networks:
+      - api_network
+    environment:
+      - PGDATA=/var/lib/postgresql/data
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_PASSWORD=$DB_PASSWORD
+      - POSTGRES_DB=$DB_DATABASE
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    restart: always
+    ports:
+      - $DB_PORT:$DB_PORT
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+    command: -p $DB_PORT
+
+volumes:
+  postgres_volume:

@@ -20,11 +20,18 @@
     "@ev-fns/server": "^0.2.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "knex": "^0.95.6",
+    "pg": "^8.6.0"
   },
   "scripts": {
     "build": "tsc",
     "dev": "ts-node-dev src/server.ts",
+    "migrate-down": "knex --knexfile ./database/knexfile.js migrate:down",
+    "migrate-latest": "knex --knexfile ./database/knexfile.js migrate:latest",
+    "migrate-make": "knex --knexfile ./database/knexfile.js migrate:make",
+    "migrate-rollback": "knex --knexfile ./database/knexfile.js migrate:rollback",
+    "migrate-up": "knex --knexfile ./database/knexfile.js migrate:up",
     "start": "node build/server.js"
   }
 }
