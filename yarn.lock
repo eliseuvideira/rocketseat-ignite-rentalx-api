@@ -55,6 +55,11 @@
     "@ev-fns/errors" "^0.1.1"
     joi "^17.3.0"
 
+"@ev-postgres/model@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@ev-postgres/model/-/model-0.2.0.tgz#d5eaaef2d9d560a2a2ee8e46648b36f6e3a7fe2a"
+  integrity sha512-WSQlAMaB8Y3eRfeSzRuk8QifXNKml2aaa3Q/FH3ZkHA0mN2hC2D3PyqzwcmUD4mEIUqisZxN9niUMbHwz8ORig==
+
 "@hapi/hoek@^9.0.0":
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.2.0.tgz#f3933a44e365864f4dad5db94158106d511e8131"

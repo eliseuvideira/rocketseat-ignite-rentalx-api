@@ -2,13 +2,19 @@ import { endpoint } from "@ev-fns/endpoint";
 import { HttpError } from "@ev-fns/errors";
 import csv from "csvtojson";
 import fs from "fs";
+import { database } from "../functions/database";
+import { Categoria } from "../models/Categoria";
 
 export const categoriasGetMany = endpoint(async (req, res) => {
-  throw new HttpError(501, "Not implemented");
+  const items = await Categoria.find(database);
+
+  res.status(200).json(items);
 });
 
 export const categoriasCreateOne = endpoint(async (req, res) => {
-  throw new HttpError(501, "Not implemented");
+  const item = await Categoria.insertOne(database, req.body);
+
+  res.status(201).json(item);
 });
 
 export const categoriasCreateMany = endpoint(async (req, res) => {
@@ -23,22 +29,50 @@ export const categoriasCreateMany = endpoint(async (req, res) => {
       noheader: true,
     }).fromStream(stream);
 
-    console.log(content);
+    const items = await Categoria.insert(database, content);
 
-    throw new HttpError(501, "Not implemented");
+    res.status(201).json(items);
   } finally {
     await fs.promises.unlink(req.file?.path).catch(console.error);
   }
 });
 
 export const categoriasGetOne = endpoint(async (req, res) => {
-  throw new HttpError(501, "Not implemented");
+  const { categoria_id } = req.params as Record<string, any>;
+
+  const item = await Categoria.findOne(database, { $eq: { categoria_id } });
+
+  if (!item) {
+    throw new HttpError(404, "Not found");
+  }
+
+  res.status(200).json(item);
 });
 
 export const categoriasUpdateOne = endpoint(async (req, res) => {
-  throw new HttpError(501, "Not implemented");
+  const { categoria_id } = req.params as Record<string, any>;
+
+  let item = await Categoria.findOne(database, { $eq: { categoria_id } });
+
+  if (!item) {
+    throw new HttpError(404, "Not found");
+  }
+
+  item = await Categoria.updateOne(database, item, req.body);
+
+  res.status(200).json(item);
 });
 
 export const categoriasDeleteOne = endpoint(async (req, res) => {
-  throw new HttpError(501, "Not implemented");
+  const { categoria_id } = req.params as Record<string, any>;
+
+  let item = await Categoria.findOne(database, { $eq: { categoria_id } });
+
+  if (!item) {
+    throw new HttpError(404, "Not found");
+  }
+
+  await Categoria.deleteOne(database, item);
+
+  res.status(204).end();
 });
