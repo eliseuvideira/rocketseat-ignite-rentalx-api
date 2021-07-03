@@ -18,9 +18,11 @@
     "@ev-fns/endpoint": "^0.1.2",
     "@ev-fns/errors": "^0.1.1",
     "@ev-fns/server": "^0.2.1",
+    "@ev-fns/validation": "^0.1.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "joi": "^17.4.0",
     "knex": "^0.95.6",
     "pg": "^8.6.0"
   },
