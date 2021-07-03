@@ -1,4 +1,6 @@
 .git/
 build/
 node_modules/
+storage/*
+!storage/.gitkeep
 .env

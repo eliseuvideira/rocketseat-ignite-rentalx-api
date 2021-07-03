@@ -1,12 +1,14 @@
 import { body, params } from "@ev-fns/validation";
 import { Router } from "express";
 import {
+  categoriasCreateMany,
   categoriasCreateOne,
   categoriasDeleteOne,
   categoriasGetMany,
   categoriasGetOne,
   categoriasUpdateOne,
 } from "../endpoints/categorias";
+import { uploadCsv } from "../middlewares/upload";
 import {
   categoriasCreateOneBody,
   categoriasDeleteOneParams,
@@ -20,6 +22,8 @@ const router = Router();
 router.get("/categorias", categoriasGetMany);
 
 router.post("/categorias", body(categoriasCreateOneBody), categoriasCreateOne);
+
+router.post("/categorias/importar", uploadCsv, categoriasCreateMany);
 
 router.get(
   "/categorias/:categoria_id",
